@@ -33,21 +33,36 @@ def calculate_saju():
     try:
         data = request.get_json()
 
-        # TODO: 사주 계산 로직 구현
-        # from modules.saju_calculator import SajuCalculator
-        # calculator = SajuCalculator()
-        # result = calculator.calculate(data)
+        # 필수 필드 검증
+        required_fields = ['year', 'month', 'day']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({
+                    'success': False,
+                    'error': f'필수 필드가 누락되었습니다: {field}'
+                }), 400
+
+        # 사주 계산
+        from modules.saju_calculator import SajuCalculator
+        calculator = SajuCalculator()
+        result = calculator.calculate(data)
 
         return jsonify({
             'success': True,
-            'message': '사주 계산 기능은 구현 예정입니다',
-            'data': data
+            'message': '사주 계산이 완료되었습니다',
+            'data': result
         }), 200
 
-    except Exception as e:
+    except ValueError as e:
         return jsonify({
             'success': False,
             'error': str(e)
+        }), 400
+    except Exception as e:
+        print(f"Error in calculate_saju: {e}")
+        return jsonify({
+            'success': False,
+            'error': f'서버 오류가 발생했습니다: {str(e)}'
         }), 500
 
 if __name__ == '__main__':

@@ -19,9 +19,9 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is running' });
 });
 
-// Routes will be added here
+// Routes
+app.use('/api/saju', require('./routes/saju'));
 // app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/saju', require('./routes/saju'));
 // app.use('/api/payment', require('./routes/payment'));
 
 // Error handling middleware

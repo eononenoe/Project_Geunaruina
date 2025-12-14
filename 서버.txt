@@ -1,0 +1,114 @@
+===============================================
+사주 앱 서버 실행 방법
+===============================================
+
+[중요] 서버는 총 3개를 실행해야 합니다!
+- Backend (Node.js)
+- Python Saju Service
+- Mobile App (Expo)
+
+===============================================
+1. Backend 서버 실행
+===============================================
+
+터미널 1 (Git Bash 또는 PowerShell):
+
+cd C:/Users/User/Desktop/Sourcetree/Geunaruina/backend
+node src/server.js
+
+실행 확인:
+- "Server is running on http://localhost:3000" 메시지 확인
+- 브라우저에서 http://localhost:3000/health 접속 → "OK" 응답
+
+===============================================
+2. Python 사주 계산 서비스 실행
+===============================================
+
+터미널 2 (새 터미널 열기):
+
+cd C:/Users/User/Desktop/Sourcetree/Geunaruina/python-saju
+./venv/Scripts/python.exe app.py
+
+실행 확인:
+- "Running on http://localhost:5000" 메시지 확인
+- 브라우저에서 http://localhost:5000/health 접속 → "OK" 응답
+
+===============================================
+3. Mobile App (Expo) 실행
+===============================================
+
+터미널 3 (새 터미널 열기):
+
+cd C:/Users/User/Desktop/Sourcetree/Geunaruina/mobile-app
+npm start
+
+실행 확인:
+- QR 코드가 터미널에 표시됨
+- 브라우저에서 http://localhost:19000 접속 → Expo Dev Tools 화면
+
+===============================================
+모바일 앱 테스트 방법
+===============================================
+
+[방법 1] Expo Go 앱 사용 (추천)
+1. 스마트폰에 Expo Go 앱 설치
+   - Android: Google Play 스토어
+   - iOS: App Store
+2. PC와 휴대폰을 같은 Wi-Fi에 연결
+3. Expo Go 앱에서 QR 코드 스캔
+4. 앱이 휴대폰에서 실행됨
+
+[방법 2] 브라우저에서 간단 테스트
+1. 브라우저에서 파일 열기:
+   C:/Users/User/Desktop/Sourcetree/Geunaruina/test-app.html
+2. 생년월일 입력 후 "사주 보기" 클릭
+
+===============================================
+서버 종료 방법
+===============================================
+
+각 터미널에서:
+Ctrl + C
+
+===============================================
+테스트 데이터 예시
+===============================================
+
+생년월일: 1995년 3월 15일
+시간: 14시 30분
+음력/양력: 양력
+성별: 여성
+
+예상 결과:
+- 년주: 乙亥 (을해)
+- 월주: 庚辰 (경진)
+- 일주: 丁卯 (정묘)
+- 시주: 丁未 (정미)
+
+===============================================
+문제 해결
+===============================================
+
+[오류] Port already in use
+→ 해당 포트를 사용 중인 프로세스를 종료하거나 다른 포트 사용
+
+[오류] Cannot connect to database
+→ MySQL이 실행 중인지 확인 (root/1234)
+
+[오류] Python module not found
+→ cd python-saju && ./venv/Scripts/pip.exe install -r requirements.txt
+
+[오류] npm packages missing
+→ cd backend && npm install
+→ cd mobile-app && npm install
+
+===============================================
+서버 접속 주소 요약
+===============================================
+
+Backend API: http://localhost:3000
+Python Service: http://localhost:5000
+Expo Dev Tools: http://localhost:19000
+HTML Test Page: C:/Users/User/Desktop/Sourcetree/Geunaruina/test-app.html
+
+===============================================
