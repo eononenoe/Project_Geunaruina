@@ -43,3 +43,7 @@ web-build/
 *.bak
 *.backup
 backup.sql
+
+# Claude
+.claude/
+CLAUDE.md
